@@ -14,23 +14,37 @@ namespace Exercise3
             points[4] = GetPointFromUser("E");
 
             double AB = CalcLineLength(points[0], points[1]);
-            //another 6 lines
+            double AC = CalcLineLength(points[0], points[2]);
+            double AD = CalcLineLength(points[0], points[3]);
+            double AE = CalcLineLength(points[0], points[4]);
+            double BC = CalcLineLength(points[1], points[2]);
+            double CD = CalcLineLength(points[2], points[3]);
+            double DE = CalcLineLength(points[3], points[4]);
+
 
             double ABC = CalcTriangleArea(AB, BC, AC);
-            // another 2 triangles
+            double ACD = CalcTriangleArea(AC, CD, AD);
+            double ADE = CalcTriangleArea(AD, DE, AE);
 
             double totalArea = ABC + ACD + ADE;
+
+            Console.WriteLine(totalArea);
 
         }
 
         static double CalcTriangleArea(double side1, double side2, double side3)
         {
-            // Formula of Heron
+            double p = (side1 + side2 + side3) / 2;
+            double area = Math.Sqrt(p*(p-side1)*(p-side2)*(p-side3));
+            return area;
         }
 
         static double CalcLineLength(Point point1, Point point2)
         {
-            // Distance between points.
+            double distX = point1.X - point2.X;
+            double distY = point1.Y - point2.Y;
+            double distance = Math.Sqrt(distX*distX + distY*distY);
+            return distance;
         }
 
         static Point GetPointFromUser(string pointName)
